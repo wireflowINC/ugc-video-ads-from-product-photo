@@ -1,0 +1,321 @@
+{
+  "name": "Recipe: UGC-style video ad from a product photo (HeyGen Video)",
+  "description": "Product photo (Picture 1) + presenter + a short script in, one 5 second 9:16 480p HeyGen Video clip of a presenter holding the product and saying the script, voice included.",
+  "tags": [
+    "recipe",
+    "ugc",
+    "video"
+  ],
+  "nodes": [
+    {
+      "id": "product-photo",
+      "type": "basedNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "Product Photo",
+        "nodeType": "input:image",
+        "category": "input",
+        "description": "A clear photo of the product the presenter shows.",
+        "inputType": "image",
+        "config": {
+          "mediaType": "IMAGE"
+        },
+        "params": {
+          "mediaType": "IMAGE"
+        },
+        "inputs": [],
+        "outputs": [
+          {
+            "id": "media",
+            "type": "UNKNOWN",
+            "label": "Media",
+            "isPort": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "presenter",
+      "type": "basedNode",
+      "position": {
+        "x": 0,
+        "y": 420
+      },
+      "data": {
+        "label": "Presenter",
+        "nodeType": "input:text",
+        "category": "input",
+        "description": "Who talks, how they look, and where they are.",
+        "config": {
+          "prompt": "A friendly woman in her late 20s with curly hair and a denim jacket, sitting on her couch in a bright apartment."
+        },
+        "params": {
+          "prompt": "A friendly woman in her late 20s with curly hair and a denim jacket, sitting on her couch in a bright apartment."
+        },
+        "inputs": [],
+        "outputs": [
+          {
+            "id": "prompt",
+            "type": "TEXT",
+            "label": "Text",
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "script",
+      "type": "basedNode",
+      "position": {
+        "x": 0,
+        "y": 780
+      },
+      "data": {
+        "label": "Script",
+        "nodeType": "input:text",
+        "category": "input",
+        "description": "What they say: about 10 to 12 words for 5 seconds.",
+        "config": {
+          "prompt": "Okay, this tote fits my laptop and my gym clothes. Finally, one bag."
+        },
+        "params": {
+          "prompt": "Okay, this tote fits my laptop and my gym clothes. Finally, one bag."
+        },
+        "inputs": [],
+        "outputs": [
+          {
+            "id": "prompt",
+            "type": "TEXT",
+            "label": "Text",
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "presenter-rules",
+      "type": "basedNode",
+      "position": {
+        "x": 0,
+        "y": 1140
+      },
+      "data": {
+        "label": "Presenter rules",
+        "nodeType": "input:text",
+        "category": "input",
+        "description": "Fixed rules that keep the product unchanged.",
+        "config": {
+          "prompt": "Casual UGC-style selfie video, vertical, handheld phone feel. One person talks straight to the camera with natural expressions, lip movements that match the words and small hand gestures. The product is the one in <Picture 1>: they hold it near their face so it stays visible, and it stays exactly as in <Picture 1>, same shape, colors, label and logo. Do not add any label, sticker, logo or text that is not on the product in <Picture 1>. Sound: their clear natural voice and light room tone only, no music, no captions, no on-screen text. Presenter and place:"
+        },
+        "params": {
+          "prompt": "Casual UGC-style selfie video, vertical, handheld phone feel. One person talks straight to the camera with natural expressions, lip movements that match the words and small hand gestures. The product is the one in <Picture 1>: they hold it near their face so it stays visible, and it stays exactly as in <Picture 1>, same shape, colors, label and logo. Do not add any label, sticker, logo or text that is not on the product in <Picture 1>. Sound: their clear natural voice and light room tone only, no music, no captions, no on-screen text. Presenter and place:"
+        },
+        "inputs": [],
+        "outputs": [
+          {
+            "id": "prompt",
+            "type": "TEXT",
+            "label": "Text",
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "script-label",
+      "type": "basedNode",
+      "position": {
+        "x": 0,
+        "y": 1500
+      },
+      "data": {
+        "label": "Script label",
+        "nodeType": "input:text",
+        "category": "input",
+        "description": "Fixed label in front of the script.",
+        "config": {
+          "prompt": "They say exactly these words, once, in a warm natural voice:"
+        },
+        "params": {
+          "prompt": "They say exactly these words, once, in a warm natural voice:"
+        },
+        "inputs": [],
+        "outputs": [
+          {
+            "id": "prompt",
+            "type": "TEXT",
+            "label": "Text",
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "join-presenter",
+      "type": "basedNode",
+      "position": {
+        "x": 520,
+        "y": 600
+      },
+      "data": {
+        "label": "Prompt Concatenator",
+        "nodeType": "utility:prompt_concat",
+        "category": "utility",
+        "description": "Join multiple text inputs to one output",
+        "config": {},
+        "params": {}
+      }
+    },
+    {
+      "id": "join-label",
+      "type": "basedNode",
+      "position": {
+        "x": 860,
+        "y": 800
+      },
+      "data": {
+        "label": "Prompt Concatenator",
+        "nodeType": "utility:prompt_concat",
+        "category": "utility",
+        "description": "Join multiple text inputs to one output",
+        "config": {},
+        "params": {}
+      }
+    },
+    {
+      "id": "join-script",
+      "type": "basedNode",
+      "position": {
+        "x": 1200,
+        "y": 700
+      },
+      "data": {
+        "label": "Prompt Concatenator",
+        "nodeType": "utility:prompt_concat",
+        "category": "utility",
+        "description": "Join multiple text inputs to one output",
+        "config": {},
+        "params": {}
+      }
+    },
+    {
+      "id": "ugc-video",
+      "type": "basedNode",
+      "position": {
+        "x": 1600,
+        "y": 300
+      },
+      "data": {
+        "label": "HeyGen Video",
+        "nodeType": "video:heygen_video_1",
+        "category": "video",
+        "description": "HeyGen Video: a clip with its own sound from a prompt and reference images",
+        "config": {
+          "duration": 5,
+          "resolution": "480p",
+          "aspect_ratio": "9:16",
+          "prompt_enhancement": "disabled"
+        },
+        "params": {
+          "duration": 5,
+          "resolution": "480p",
+          "aspect_ratio": "9:16",
+          "prompt_enhancement": "disabled"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "reactflow__edge-presenter-rulesout-prompt-join-presenterin-prompt1",
+      "source": "presenter-rules",
+      "target": "join-presenter",
+      "sourceHandle": "out-prompt",
+      "targetHandle": "in-prompt1",
+      "type": "default",
+      "data": {
+        "portType": "TEXT"
+      }
+    },
+    {
+      "id": "reactflow__edge-presenterout-prompt-join-presenterin-prompt2",
+      "source": "presenter",
+      "target": "join-presenter",
+      "sourceHandle": "out-prompt",
+      "targetHandle": "in-prompt2",
+      "type": "default",
+      "data": {
+        "portType": "TEXT"
+      }
+    },
+    {
+      "id": "reactflow__edge-join-presenterout-prompt-join-labelin-prompt1",
+      "source": "join-presenter",
+      "target": "join-label",
+      "sourceHandle": "out-prompt",
+      "targetHandle": "in-prompt1",
+      "type": "default",
+      "data": {
+        "portType": "TEXT"
+      }
+    },
+    {
+      "id": "reactflow__edge-script-labelout-prompt-join-labelin-prompt2",
+      "source": "script-label",
+      "target": "join-label",
+      "sourceHandle": "out-prompt",
+      "targetHandle": "in-prompt2",
+      "type": "default",
+      "data": {
+        "portType": "TEXT"
+      }
+    },
+    {
+      "id": "reactflow__edge-join-labelout-prompt-join-scriptin-prompt1",
+      "source": "join-label",
+      "target": "join-script",
+      "sourceHandle": "out-prompt",
+      "targetHandle": "in-prompt1",
+      "type": "default",
+      "data": {
+        "portType": "TEXT"
+      }
+    },
+    {
+      "id": "reactflow__edge-scriptout-prompt-join-scriptin-prompt2",
+      "source": "script",
+      "target": "join-script",
+      "sourceHandle": "out-prompt",
+      "targetHandle": "in-prompt2",
+      "type": "default",
+      "data": {
+        "portType": "TEXT"
+      }
+    },
+    {
+      "id": "reactflow__edge-join-scriptout-prompt-ugc-videoin-prompt",
+      "source": "join-script",
+      "target": "ugc-video",
+      "sourceHandle": "out-prompt",
+      "targetHandle": "in-prompt",
+      "type": "default",
+      "data": {
+        "portType": "TEXT"
+      }
+    },
+    {
+      "id": "reactflow__edge-product-photoout-media-ugc-videoin-reference_image_urls",
+      "source": "product-photo",
+      "target": "ugc-video",
+      "sourceHandle": "out-media",
+      "targetHandle": "in-reference_image_urls",
+      "type": "default",
+      "data": {
+        "portType": "IMAGE"
+      }
+    }
+  ]
+}

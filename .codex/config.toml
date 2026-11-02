@@ -1,0 +1,6 @@
+# Codex reads a project's .codex/config.toml in trusted projects only. For every project, put this table in ~/.codex/config.toml.
+# Sign in once with: codex mcp login wireflow
+[mcp_servers.wireflow]
+url = "https://www.wireflow.ai/api/mcp"
+# Ask before any Wireflow tool that is not marked read-only, such as run_workflow, which spends credits.
+default_tools_approval_mode = "writes"
